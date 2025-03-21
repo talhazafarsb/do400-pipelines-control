@@ -34,6 +34,12 @@ pipeline {
                 expression { env.GIT_BRANCH == 'origin/main' }
             }
             steps {
+                beforeInput true
+            }
+            input {
+                message 'Deploy the application?'
+            }
+            steps {
                 echo 'Deploying...'
             }
         }
