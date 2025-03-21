@@ -5,10 +5,12 @@ pipeline {
         }
     }
     stages {
-	stage('Checkout') {
-		git branch: 'main',
-		    url: 'https://github.com/talhazafarsb/do400-pipelines-control'
-	}
+        stage('Checkout') {
+            steps { // Missing "steps" block added here
+                git branch: 'main',
+                    url: 'https://github.com/talhazafarsb/do400-pipelines-control'
+            }
+        }
         stage('Backend Tests') {
             steps {
                 sh 'node ./backend/test.js'
