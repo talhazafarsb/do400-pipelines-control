@@ -4,6 +4,9 @@ pipeline {
             label 'nodejs'
         }
     }
+     parameters {
+	booleanParam(name: "RUN_FRONTEND_TESTS", defaultValue: true)
+     }
     stages {
         stage('Checkout') {
             steps { // Missing "steps" block added here
@@ -11,10 +14,7 @@ pipeline {
                     url: 'https://github.com/talhazafarsb/do400-pipelines-control'
             }
         }
-	parameters {
-	        booleanParam(name: "RUN_FRONTEND_TESTS", defaultValue: true)
-	}
-        stage('Run Tests') {
+	stage('Run Tests') {
             parallel {
                 stage('Backend Tests') {
                     steps {
